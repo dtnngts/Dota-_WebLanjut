@@ -20,5 +20,3 @@ class Home extends BaseController
 		echo view("mahasiswa/index", $adat);
 	}
 }
-	}
-}
