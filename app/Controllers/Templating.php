@@ -43,6 +43,5 @@ class Templating extends BaseController
 		];
 		$this->userModel->insert($data);
 		return redirect()->to('/register');
-	
 	}
 }

@@ -5,14 +5,14 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="assets/adminlte/plugins/index2.html"><b>Admin</b>LTE</a>
+    <a href="assets/adminlte/index2.html"><b>Admin</b>LTE</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="/Templating/saveRegister" method="post">
+      <form action="/saveRegister" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Full name" id="fullname" name="fullname">
           <div class="input-group-append">
@@ -37,8 +37,7 @@
             </div>
           </div>
         </div>
-        
-       
+        <div class="row">
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -47,14 +46,9 @@
         </div>
       </form>
 
-     
-
-      <a href="login.html" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
-
-
 <?= $this->endSection(); ?>
