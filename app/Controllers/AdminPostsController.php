@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-
-class AdminPostsController extends BaseController
+use App\Models\PostModel;
+class AdminPostController extends BaseController
 {
 	public function index()
 	{
@@ -12,7 +12,7 @@ class AdminPostsController extends BaseController
 		$data = [
 			'posts' => $PostModel->findAll()
 		];
-		return view("posts/index",$data);
+		return view("posts/index", $data);
 	}
 
 	public function create()
@@ -28,36 +28,36 @@ class AdminPostsController extends BaseController
 	{
 		$valid = $this->validate([
 			"judul" => [
-				"label" => "Judul",
+				"label" => "judul",
 				"rules" => "required",
 				"errors" => [
 					"required" => "{field} Harus Diisi!"
 				]
 			],
 			"slug" => [
-				"label" => "Slug",
+				"label" => "slug",
 				"rules" => "required|is_unique[posts.slug]",
 				"errors" => [
 					"required" => "{field} Harus Diisi!",
-					"is_unique" => "{filed} sudah ada!"
+					"is_unique" => "{field} sudah ada!"
 				]
 			],
 			"kategori" => [
-				"label" => "Kategori",
+				"label" => "kategori",
 				"rules" => "required",
 				"errors" => [
 					"{field} Harus Diisi!"
 				]
 			],
 			"author" => [
-				"label" => "Author",
+				"label" => "author",
 				"rules" => "required",
 				"errors" => [
 					"{field} Harus Diisi!"
 				]
 			],
 			"deskripsi" => [
-				"label" => "Deskripsi",
+				"label" => "deskripsi",
 				"rules" => "required",
 				"errors" => [
 					"{field} Harus Diisi!"
@@ -80,6 +80,30 @@ class AdminPostsController extends BaseController
 		} else {
 			return redirect()->to(base_url('/admin/posts/create'))->withInput()->with('validation', $this->validator);
 		}
-		// return view("posts/store");
+	}
+
+	public function edit($post_id){
+		$postmodel = new PostModel();
+		$datas ['postmodel'] = $postmodel->find($post_id);
+		return view('posts/edit', $datas);
+	}
+
+	public function update($post_id){
+		$postmodel =new PostModel();
+		$data = [
+			'judul' => $this->request->getVar('judul'),
+			'slug' => $this->request->getVar('slug'),
+			'kategori' => $this->request->getVar('kategori'),
+			'author' => $this->request->getVar('author'),
+			'deskripsi' => $this->request->getVar('deskripsi'),
+		];
+		$postmodel->update($post_id, $data);
+		return redirect()->to(base_url('/admin/posts/'));
+	}
+
+	public function delete($post_id){
+		$postmodel = new PostModel();
+		$postmodel->delete($post_id);
+		return redirect()->to(base_url('/admin/posts/'));
 	}
 }

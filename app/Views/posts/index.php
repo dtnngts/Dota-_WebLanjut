@@ -164,7 +164,7 @@
                         <img src="/assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Vaexy</a>
+                        <a href="#" class="d-block">Anisa</a>
                     </div>
                 </div>
 
@@ -241,8 +241,8 @@
                                 <td><?= $post['author']; ?></td>
                                 <td><?= $post['kategori']; ?></td>
                                 <td>
-                                    <a href="/posts/edit/<?= $post['slug']; ?>" class="btn btn-sm btn-warning me-1"><i class="fas fa-edit"> Edit</i></a>
-                                    <a href="/posts/delete/<?= $post['slug']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"> Delete</i></a>
+                                    <a href="<?= base_url('admin/posts/edit/' .$post['post_id'])?>" class="btn btn-sm btn-warning me-1"><i class="fas fa-edit"> Edit</i></a>
+                                    <a href="<?= base_url('admin/posts/delete/' .$post['post_id']) ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"> Delete</i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

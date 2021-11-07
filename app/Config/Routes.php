@@ -1,5 +1,4 @@
 <?php
-
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
@@ -32,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', function(){
+$routes->get('/', function () {
 	$data = [
 		'title' => "Blog - Home"
 	];
@@ -41,12 +40,11 @@ $routes->get('/', function(){
 	echo view('v_home');
 	echo view('layouts/footer');
 });
-
-
 $routes->get('/register', 'Templating::register');
 $routes->post('/saveRegister', 'Templating::saveRegister');
 $routes->get('/posts', 'PostController::index');
-$routes->get('/about', function(){
+
+$routes->get('/about', function () {
 	$data = [
 		'title' => "Blog - About"
 	];
@@ -57,9 +55,13 @@ $routes->get('/about', function(){
 });
 
 $routes->get('/admin', 'Templating::index');
-$routes->get('/admin/posts', 'AdminPostsController::index');
-$routes->get('/admin/posts/create', 'AdminPostsController::create');
-$routes->post('/admin/posts/store', 'AdminPostsController::store');
+$routes->get('/admin/posts', 'AdminPostController::index');
+$routes->get('/admin/posts/create', 'AdminPostController::create');
+$routes->post('/admin/posts/store', 'AdminPostController::store');
+$routes->get('/admin/posts/edit/(:num)', 'AdminPostController::edit/$1');
+$routes->post('/admin/posts/update/(:num)', 'AdminPostController::update/$1');
+$routes->get('/admin/posts/delete/(:num)', 'AdminPostController::delete/$1');
+
 
 /*
  * --------------------------------------------------------------------
